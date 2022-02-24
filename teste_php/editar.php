@@ -20,7 +20,10 @@ if(isset($_POST['nome_prod'],$_POST['preco_cod'])){
     $objProduto->nome = $_POST['nome_prod'];
     $objProduto->preco =$_POST['preco_cod'];
     $objProduto->atualizar();
+    header('location: index.php?status=success');
+
 }
+
 
 include __DIR__.'/includes/header.php';
 include __DIR__.'/includes/formulario.php';

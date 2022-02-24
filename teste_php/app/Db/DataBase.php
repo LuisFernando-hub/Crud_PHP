@@ -148,7 +148,6 @@ class Database{
         $id = $value['id'];
         $nome = $value['nome'];
         $preco = $value['preco'];
-        
 
         $query = 'UPDATE produtos as m
         INNER JOIN precos as tp 
@@ -157,6 +156,27 @@ class Database{
             tp.preco = '.$preco.'
         WHERE m.id_prod ='.$id;
 
-        return $this->execute($query);
+
+        $this->execute($query);
+
+        return true;
+    }
+
+
+     /**
+     * Método responsavel por executar a exclusão no banco de dados
+     * 
+     * 
+     * @param interger $id 
+     * @return [type]
+     */
+    public function delete($id){
+
+        $query = 'DELETE produtos, precos FROM produtos
+        LEFT JOIN precos ON produtos.id_prod = precos.id_preco
+        WHERE produtos.id_prod ='.$id;
+
+        $this->execute($query);
+        return true;
     }
 }

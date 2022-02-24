@@ -66,14 +66,23 @@ class Produto
      */
     public function atualizar(){
         $DB = new Database('produtos');
-        $result = $DB->update([
+        $DB->update([
             'id' => $this->id,
             'nome' => $this->nome,
             'preco' => $this->preco
         ]);
-        $result = $result->fetchAll();
-        print_r($result);die;
-        return $result;
+        return true;
+    }
+
+
+    /**
+     * Método responsavel por excluir os produtos no banco
+     * @return [type]
+     */
+    public static function excluir($id){
+        $DB = new Database('produtos');
+        $DB->delete($id);
+        return true;
     }
 
     /**
@@ -100,4 +109,6 @@ class Produto
         $result = $result->fetchAll();
         return $result;
     }
+
+
 }
