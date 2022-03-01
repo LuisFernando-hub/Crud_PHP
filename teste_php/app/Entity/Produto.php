@@ -23,7 +23,7 @@ class Produto
 
     /**
      * Preço do produto
-     * @var decimal
+     * @var float
      */
 
     public $preco;
@@ -40,6 +40,18 @@ class Produto
      */
     public function cadastrar(){
         //DEFINIR OS DESCONTOS
+        $cor = $this->cor;
+        if($cor == 'vermelho'){
+            $preco = $this->preco;
+            $desconto = $preco * 0.20;
+            $preco = $preco - $desconto;
+        }else if ($cor == 'amarelo'){
+            $preco = $this->preco;
+            $desconto = $preco * 0.10;
+            $preco = $preco - $desconto;
+        }
+
+
         
         // $this->preco = str_replace(",",".",$this->preco);
 
@@ -53,7 +65,7 @@ class Produto
         $DB = new Database('precos');
         $DB->insert([
             'id_preco' => $this->id,
-            'preco' => $this->preco,
+            'preco' => $preco,
         ]);
        
         //RETORNAR SUCESSO
